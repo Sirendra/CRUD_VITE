@@ -18,14 +18,14 @@
       </div>
       <router-link to="/">
       <button type="submit" class="btn btn-large btn-block btn-primary full-width" @click="addToAPI">Submit</button>
-      
-      <button class="btn btn-large btn-block btn-success full-width">Go User</button>  
+      <button class="btn btn-large btn-block btn-success full-width">Go to User List</button>  
       </router-link>  
     </form>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'AddUser',
   props: {
@@ -38,28 +38,28 @@ export default {
         lastName:'',
         email:''
       }
-      
     }
   },
-  methods: {
+  methods:{
     addToAPI(){
-      let newUser={
+      let newUser = {
         firstName: this.User.firstName,
-        lastName:this.User.lastName,
-        email:this.User.email
+        lastName: this.User.lastName,
+        email: this.User.email
       }
       console.log(newUser)
-      axios.post('localhost:5000/users',newUser)
-      .then((response)=> {
+      axios.post('http://localhost:5000/users',newUser)
+      .then((response)=>{
         console.log(response)
       })
       .catch((error)=>{
-        console.log(error);
+        console.log(error)
       })
     }
-  },
+  }
 }
 </script>
+
 <style scoped>
 h1, h2 {
   font-weight: normal;
